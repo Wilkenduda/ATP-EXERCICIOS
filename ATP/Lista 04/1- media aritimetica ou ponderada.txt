@@ -1,0 +1,46 @@
+using System;
+
+class Program
+{
+    static void CalcularMedia(double nota1, double nota2, double nota3, char letra)//função para calcular a média
+    {
+        double media = 0;//declaração da variável média
+
+        if (letra == 'A')//se a letra for A
+        {
+            media = (nota1 + nota2 + nota3) / 3;//cálculo da média aritimética
+        }
+        else if (letra == 'P')//se a letra for P
+        {
+            media = (nota1 * 5 + nota2 * 3 + nota3 * 2) / (5 + 3 + 2);//cálculo da média ponderada
+        }
+        else
+        {
+            Console.WriteLine("Letra inválida. Use 'A' para média aritmética ou 'P' para média ponderada.");//se a letra não for A nem P, exibe mensagem de erro
+            return;
+        }
+
+        Console.WriteLine($"Média do aluno: {media}");//exibe a média do aluno
+    }
+
+    static void Main(string[] args)
+    {
+        Console.Write("Digite a quantidade de alunos (N): ");//pede ao usuário a quantidade de alunos
+        int n = int.Parse(Console.ReadLine());//entrada de dados
+
+        for (int i = 1; i <= n; i++)//loop para cada aluno
+        {
+            Console.WriteLine($"Aluno {i}:");
+            Console.Write("Digite a primeira nota: ");
+            double nota1 = double.Parse(Console.ReadLine());
+            Console.Write("Digite a segunda nota: ");
+            double nota2 = double.Parse(Console.ReadLine());
+            Console.Write("Digite a terceira nota: ");
+            double nota3 = double.Parse(Console.ReadLine());
+            Console.Write("Digite 'A' para média aritmética ou 'P' para média ponderada: ");
+            char letra = char.Parse(Console.ReadLine());//entrada de dados
+
+            CalcularMedia(nota1, nota2, nota3, letra);//chama a função para calcular a média
+        }
+    }
+}
