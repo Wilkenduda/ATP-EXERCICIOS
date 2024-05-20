@@ -1,0 +1,33 @@
+using System;
+
+class Program
+{
+    static void ordemvalores(int a, int b, int c)
+    {
+        // Cria um vetor para armazenar os valores e ordená-los.
+        int[] valores = { a, b, c };
+        Array.Sort(valores); // Ordena os valores em ordem crescente.
+
+        // Exibe os valores ordenados.
+        Console.WriteLine($"Valores em ordem crescente: {valores[0]}, {valores[1]}, {valores[2]}");
+    }
+
+    static void Main(string[] args)
+    {
+        Console.Write("Digite a quantidade de conjuntos de 3 valores (N): ");
+        int n = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine($"Conjunto {i + 1}:");
+            Console.Write("Digite o primeiro valor: ");
+            int valor1 = int.Parse(Console.ReadLine());
+            Console.Write("Digite o segundo valor: ");
+            int valor2 = int.Parse(Console.ReadLine());
+            Console.Write("Digite o terceiro valor: ");
+            int valor3 = int.Parse(Console.ReadLine());
+
+            ordemvalores(valor1, valor2, valor3);
+        }
+    }
+}

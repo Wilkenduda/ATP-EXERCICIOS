@@ -1,0 +1,27 @@
+using System;
+
+class Program
+{
+    static int CalcularMDC(int a, int b)
+    {
+        while (b != 0)
+        {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    static void Main()
+    {
+        Console.Write("Digite o primeiro número: ");
+        int numero1 = int.Parse(Console.ReadLine());
+
+        Console.Write("Digite o segundo número: ");
+        int numero2 = int.Parse(Console.ReadLine());
+
+        int mdc = CalcularMDC(numero1, numero2);
+        Console.WriteLine($"O Máximo Divisor Comum (MDC) de {numero1} e {numero2} é {mdc}");
+    }
+}

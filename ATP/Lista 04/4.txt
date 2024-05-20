@@ -1,0 +1,51 @@
+using System;
+
+class Program
+{
+    static void VerificarTriangulo(double x, double y, double z)
+    {
+        if (x < y + z && y < x + z && z < x + y)
+        {
+            if (x == y && y == z)
+            {
+                Console.WriteLine("Triângulo Equilátero: os comprimentos dos 3 lados são iguais.");
+            }
+            else if (x == y || x == z || y == z)
+            {
+                Console.WriteLine("Triângulo Isósceles: os comprimentos de pelo menos 2 lados são iguais.");
+            }
+            else
+            {
+                Console.WriteLine("Triângulo Escaleno: os comprimentos dos 3 lados são diferentes.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Esses valores não formam um triângulo.");
+        }
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Verificação de Triângulos");
+
+        while (true)
+        {
+            Console.Write("Digite o valor de X (ou um valor negativo para sair): ");
+            double x = double.Parse(Console.ReadLine());
+
+            if (x <0)
+            {
+                break; // Encerra o programa se um valor negativo for digitado.
+            }
+
+            Console.Write("Digite o valor de Y: ");
+            double y = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite o valor de Z: ");
+            double z = double.Parse(Console.ReadLine());
+
+            VerificarTriangulo(x, y, z);
+        }
+    }
+}

@@ -1,0 +1,32 @@
+using System;
+
+class Program
+{
+    static bool Verificarvalor(int numero)
+    {
+        return numero > 0;
+    }
+
+    static void Main()
+    {
+        Console.Write("Quantos números deseja verificar? N = ");
+        int n = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= n; i++)
+        {
+            Console.Write($"Digite o número {i}: ");
+            int numero = int.Parse(Console.ReadLine());
+
+            bool resultado = Verificarvalor(numero);
+
+            if (resultado)
+            {
+                Console.WriteLine($"O número {numero} é positivo.");
+            }
+            else
+            {
+                Console.WriteLine($"O número {numero} não é positivo.");
+            }
+        }
+    }
+}

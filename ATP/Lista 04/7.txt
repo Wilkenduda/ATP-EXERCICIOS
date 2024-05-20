@@ -1,0 +1,50 @@
+using System;
+
+class Program
+{
+    static void Conceito(double media)
+    {
+        char conceito;
+
+        if (media < 40)
+        {
+            conceito = 'F';
+        }
+        else if (media >= 40 && media < 60)
+        {
+            conceito = 'E';
+        }
+        else if (media >= 60 && media < 70)
+        {
+            conceito = 'D';
+        }
+        else if (media >= 70 && media < 80)
+        {
+            conceito = 'C';
+        }
+        else if (media >= 80 && media < 90)
+        {
+            conceito = 'B';
+        }
+        else
+        {
+            conceito = 'A';
+        }
+
+        Console.WriteLine($"Média: {media}, Conceito: {conceito}");
+    }
+
+    static void Main()
+    {
+        Console.Write("Quantos alunos deseja avaliar? N = ");
+        int n = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= n; i++)
+        {
+            Console.Write($"Digite a média do aluno {i}: ");
+            double media = double.Parse(Console.ReadLine());
+
+            Conceito(media);
+        }
+    }
+}

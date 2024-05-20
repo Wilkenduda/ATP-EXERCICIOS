@@ -1,0 +1,37 @@
+using System;
+
+class Program
+{
+    static void CalcularMediaSalario()
+    {
+        int contador = 0;
+        double somaSalario = 0;
+
+        while (true)
+        {
+            Console.WriteLine($"Informe os dados da pessoa {contador + 1} (ou digite um número negativo para encerrar):");
+
+            Console.Write("Salário: ");
+            double salario = double.Parse(Console.ReadLine());
+
+            if (salario <0){
+                break; //encerra se o valor digitado for negativo.
+              }
+            somaSalario += salario;
+            contador++;
+        if (salario>0)
+        {
+            double mediaSalario = somaSalario / contador;//calcula a média
+            Console.WriteLine($"Média de salário da população: {mediaSalario:C2}");
+        
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Programa de Cálculo de Média de Salário da População");
+        CalcularMediaSalario();
+    }
+
+}
+  }

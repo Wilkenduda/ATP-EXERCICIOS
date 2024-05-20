@@ -1,0 +1,48 @@
+using System;
+
+class Program
+{
+    static double Mediaaprovados(int numeroAlunos)
+    {
+        double somaNotas = 0;
+        int Aprovados = 0;
+
+        for (int i = 1; i <= numeroAlunos; i++)
+        {
+            Console.Write($"Digite a nota do aluno {i}: ");
+            double nota = double.Parse(Console.ReadLine());
+
+            if (nota >= 6)
+            {
+                somaNotas += nota;
+                Aprovados++;
+            }
+        }
+
+        if (Aprovados > 0)
+        {
+            return somaNotas / Aprovados;
+        }
+        else
+        {
+            return 0; // Retorna 0 se nenhum aluno foi aprovado.
+        }
+    }
+
+    static void Main()
+    {
+        Console.Write("Digite o número de alunos: ");
+        int numeroAlunos = int.Parse(Console.ReadLine());
+
+        double mediaAprovados = Mediaaprovados(numeroAlunos);
+
+        if (mediaAprovados > 0)
+        {
+            Console.WriteLine($"A média das notas dos alunos aprovados é {mediaAprovados:F2}");
+        }
+        else
+        {
+            Console.WriteLine("Nenhum aluno foi aprovado.");
+        }
+    }
+}
