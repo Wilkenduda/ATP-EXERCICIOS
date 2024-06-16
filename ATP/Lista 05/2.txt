@@ -1,0 +1,60 @@
+using System;
+
+class Program
+{
+    // Função para preencher o vetor de notas dos alunos
+    static void PreencherNotas(double[] vetorNotas)
+    {
+        for (int i = 0; i < vetorNotas.Length; i++)
+        {
+            Console.Write($"Digite a nota do {i + 1}° aluno: ");
+            vetorNotas[i] = double.Parse(Console.ReadLine());
+        }
+    }
+
+    // Função para calcular a média e contar o número de alunos com nota acima da média
+    static void MediaECont(double[] vetorNotas, out double media, out int acimaMedia)
+    {
+        double soma = 0;
+
+        // Calcula a soma de todas as notas
+        foreach (double nota in vetorNotas)
+        {
+            soma += nota;
+        }
+
+        // Calcula a média
+        media = soma / vetorNotas.Length;
+
+        // Inicializa o contador de alunos acima da média
+        acimaMedia = 0;
+
+        // Conta o número de alunos com nota acima da média
+        foreach (double nota in vetorNotas)
+        {
+            if (nota > media)
+            {
+                acimaMedia++;
+            }
+        }
+    }
+
+    static void Main()
+    {
+        // Define o tamanho da turma
+        int tamanhoTurma = 10;
+
+        // Cria um vetor para armazenar as notas dos alunos
+        double[] notasAlunos = new double[tamanhoTurma];
+
+        // Chama a função para preencher as notas dos alunos
+        PreencherNotas(notasAlunos);
+
+        // Chama a função para calcular a média e contar os alunos acima da média
+        MediaECont(notasAlunos, out double mediaTurma, out int acimaDaMediaCount);
+
+        // Exibe a média da turma e o número de alunos com nota acima da média
+        Console.WriteLine($"\nMédia da turma: {mediaTurma}");
+        Console.WriteLine($"Alunos com nota acima da média: {acimaDaMediaCount}");
+    }
+}

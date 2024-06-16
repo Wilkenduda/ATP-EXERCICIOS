@@ -1,0 +1,73 @@
+using System;
+
+class Program
+{
+    // Procedimento para preencher um vetor X de 10 elementos
+    static void VetorX(int[] vetorX)
+    {
+        Console.WriteLine("Preencha o vetor X com 10 elementos:");
+        for (int i = 0; i < vetorX.Length; i++)
+        {
+            Console.Write($"Digite o {i + 1}° elemento: ");
+            vetorX[i] = int.Parse(Console.ReadLine());
+        }
+    }
+
+    // Função para copiar valores negativos de um vetor para outro
+    static int[] CopiarNegativos(int[] vetor)
+    {
+        // Conta quantos elementos negativos existem no vetor
+        int countNegativos = 0;
+        foreach (int valor in vetor)
+        {
+            if (valor < 0)
+            {
+                countNegativos++;
+            }
+        }
+
+        // Cria um novo vetor apenas com os valores negativos, sem elementos vazios
+        int[] vetorNegativos = new int[countNegativos];
+        int index = 0;
+        foreach (int valor in vetor)
+        {
+            if (valor < 0)
+            {
+                vetorNegativos[index] = valor;
+                index++;
+            }
+        }
+
+        return vetorNegativos;
+    }
+
+    // Procedimento para exibir o conteúdo de um vetor
+    static void Exibir(int[] vetor, string nomeVetor)
+    {
+        Console.Write($"Conteúdo do vetor {nomeVetor}: ");
+        foreach (int valor in vetor)
+        {
+            Console.Write($"{valor} ");
+        }
+        Console.WriteLine();
+    }
+
+    static void Main()
+    {
+        // Declarando o vetor X
+        int[] vetorX = new int[10];
+
+        // Preenchendo o vetor X
+        VetorX(vetorX);
+
+        // Exibindo o vetor X
+        Exibir(vetorX, "X");
+
+        // Copiando valores negativos para um novo vetor
+        int[] vetorNegativos = CopiarNegativos(vetorX);
+
+        // Exibindo o vetor com valores negativos
+        Exibir(vetorNegativos, "Negativos");
+    }
+}
+ 

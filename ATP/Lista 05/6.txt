@@ -1,0 +1,60 @@
+using System;
+
+class Program {
+  static void Main (string[] args) {
+    int qtddias=31;
+    double[] temperatura=new double[qtddias];
+    RecebTemp(temperatura);
+    Calculos(temperatura);
+  }
+  
+  static void RecebTemp(double[]vetortemp){
+    for(int i=0;i<vetortemp.Length; i++){
+     Console.WriteLine($"Escreva a temperatura no dia{i+1}");
+      vetortemp[i]= int.Parse(Console.ReadLine());
+    }
+  }
+
+  static void Calculos(double[]valortemp){
+    double menor = Double.MaxValue;
+    double maior = Double.MinValue;
+
+    double soma=0;
+    for (int i = 0; i < valortemp.Length; i++)
+        {
+            double temperaturaAtual = valortemp[i];
+
+            if (temperaturaAtual < menor)
+            {
+                menor = temperaturaAtual;
+            }
+
+            if (temperaturaAtual > maior)
+            {
+                maior = temperaturaAtual;
+            }
+
+            soma+= temperaturaAtual;
+        }
+
+        // Calcula a temperatura média
+        double mediaTemperaturas = soma / valortemp.Length;
+
+        // Conta o número de dias em que a temperatura foi inferior à média
+        int diasInferioresAMedia = 0;
+        foreach (double temperatura in valortemp)
+        {
+            if (temperatura < mediaTemperaturas)
+            {
+                diasInferioresAMedia++;
+            }
+        }
+
+        // Imprime os resultados
+        Console.WriteLine($"Menor temperatura: {menor}°C");
+        Console.WriteLine($"Maior temperatura: {maior}°C");
+        Console.WriteLine($"Temperatura média: {mediaTemperaturas}°C");
+        Console.WriteLine($"Número de dias com temperatura inferior à média: {diasInferioresAMedia}");
+    
+  }
+}

@@ -1,0 +1,46 @@
+using System;
+
+class Program
+{
+    static void PreencherVetor(int[] vetor, string nomevetor)
+    {
+        Console.WriteLine($"preencha o vetor {nomevetor} com 10 elementos");
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            Console.Write($"{i + 1}° elemento: ");
+            vetor[i] = int.Parse(Console.ReadLine());
+        }
+    }
+
+    static void IntercalarVetores(int[] vetorX, int[] vetorY, out int[] vetorIntercalado)
+    {
+        vetorIntercalado = new int[vetorX.Length * 2];
+        for (int i = 0; i < vetorX.Length; i++)
+        {
+            vetorIntercalado[i * 2] = vetorX[i];
+            vetorIntercalado[i * 2 + 1] = vetorY[i];
+        }
+      //O loop é destinado a percorrer cada elemento dos vetores vetorX e vetorY. No contexto deste loop, vetorX.Length é usado porque ambos os vetores, vetorX e vetorY, têm o mesmo comprimento (cada um com 10 elementos). Portanto, vetorX.Length é utilizado para garantir que todos os elementos dos dois vetores sejam processados.
+    }
+
+    static void Exibir(int[] vetor, string nomevetor)
+    {
+        Console.Write($"Conteúdo do vetor {nomevetor}: ");
+        foreach (int valor in vetor)
+        {
+            Console.Write($"{valor} ");
+        }
+        Console.WriteLine();
+    }
+  static void Main(){
+    int[] vetorx= new int[10];
+    int[] vetory=new int [10];
+    int[] vetorintercalado;
+    PreencherVetor(vetorx, "x");
+    PreencherVetor(vetory, "y");
+    IntercalarVetores(vetorx, vetory, out vetorintercalado);
+    Exibir(vetorx, "X");
+    Exibir(vetory, "Y");
+    Exibir(vetorintercalado, "Intercalado");
+  }
+}

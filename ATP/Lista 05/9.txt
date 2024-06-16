@@ -1,0 +1,82 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] matrizA = new int[4, 6];
+        int[,] matrizB = new int[4, 6];
+
+        // matrizes A e B
+        PreencherMatriz("A", matrizA);
+        PreencherMatriz("B", matrizB);
+
+        // matriz S (soma de A e B)
+        int[,] matrizS = CalcularSoma(matrizA, matrizB);
+        MostrarMatriz("S (A + B)", matrizS);
+
+        //  matriz D (diferença de A e B)
+        int[,] matrizD = CalcularDiferenca(matrizA, matrizB);
+        MostrarMatriz("D (A - B)", matrizD);
+    }
+
+    static void PreencherMatriz(string nomeMatriz, int[,] matriz)
+    {
+        Console.WriteLine($"Preencha a matriz {nomeMatriz} 4x6:");
+
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                Console.Write($"M{nomeMatriz}[{i + 1},{j + 1}]: ");
+                matriz[i, j] = int.Parse(Console.ReadLine());
+            }
+        }
+    }
+
+    static void MostrarMatriz(string nomeMatriz, int[,] matriz)
+    {
+        Console.WriteLine($"Matriz {nomeMatriz}:");
+
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                Console.Write(matriz[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        Console.WriteLine();
+    }
+
+    static int[,] CalcularSoma(int[,] matrizA, int[,] matrizB)
+    {
+        int[,] matrizS = new int[4, 6];
+
+        for (int i = 0; i < matrizA.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrizA.GetLength(1); j++)
+            {
+                matrizS[i, j] = matrizA[i, j] + matrizB[i, j];
+            }
+        }
+
+        return matrizS;
+    }
+
+    static int[,] CalcularDiferenca(int[,] matrizA, int[,] matrizB)
+    {
+        int[,] matrizD = new int[4, 6];
+
+        for (int i = 0; i < matrizA.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrizA.GetLength(1); j++)
+            {
+                matrizD[i, j] = matrizA[i, j] - matrizB[i, j];
+            }
+        }
+
+        return matrizD;
+    }
+}

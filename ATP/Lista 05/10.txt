@@ -1,0 +1,100 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] matrizM = new int[10, 10];
+
+        // matriz M
+        PreencherMatriz(matrizM);
+
+        //matriz original
+        Console.WriteLine("Matriz Original:");
+        MostrarMatriz(matrizM);
+
+        // trocas indicadas e mostra as matrizes resultantes
+        TrocarLinhas(matrizM, 2, 8);
+        Console.WriteLine("Matriz Após Troca da Linha 2 com a Linha 8:");
+        MostrarMatriz(matrizM);
+
+        TrocarColunas(matrizM, 4, 10);
+        Console.WriteLine("Matriz Após Troca da Coluna 4 com a Coluna 10:");
+        MostrarMatriz(matrizM);
+
+        TrocarDiagonais(matrizM);
+        Console.WriteLine("Matriz Após Troca da Diagonal Principal com a Diagonal Secundária:");
+        MostrarMatriz(matrizM);
+
+        TrocarLinhaComColuna(matrizM, 5, 10);
+        Console.WriteLine("Matriz Após Troca da Linha 5 com a Coluna 10:");
+        MostrarMatriz(matrizM);
+    }
+
+    static void PreencherMatriz(int[,] matriz)
+    {
+        Console.WriteLine("Informe os elementos da matriz M(10,10):");
+
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                Console.Write($"M[{i + 1},{j + 1}]: ");
+                matriz[i, j] = int.Parse(Console.ReadLine());
+            }
+        }
+    }
+
+    static void MostrarMatriz(int[,] matriz)
+    {
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                Console.Write(matriz[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+        Console.WriteLine();
+    }
+
+    static void TrocarLinhas(int[,] matriz, int linha1, int linha2)
+    {
+        for (int j = 0; j < matriz.GetLength(1); j++)
+        {
+            int temp = matriz[linha1 - 1, j];
+            matriz[linha1 - 1, j] = matriz[linha2 - 1, j];
+            matriz[linha2 - 1, j] = temp;
+        }
+    }
+
+    static void TrocarColunas(int[,] matriz, int coluna1, int coluna2)
+    {
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            int temp = matriz[i, coluna1 - 1];
+            matriz[i, coluna1 - 1] = matriz[i, coluna2 - 1];
+            matriz[i, coluna2 - 1] = temp;
+        }
+    }
+
+    static void TrocarDiagonais(int[,] matriz)
+    {
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            int temp = matriz[i, i];
+            matriz[i, i] = matriz[i, matriz.GetLength(1) - 1 - i];
+            matriz[i, matriz.GetLength(1) - 1 - i] = temp;
+        }
+    }
+
+    static void TrocarLinhaComColuna(int[,] matriz, int linha, int coluna)
+    {
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            int temp = matriz[i, linha - 1];
+            matriz[i, linha - 1] = matriz[i, coluna - 1];
+            matriz[i, coluna - 1] = temp;
+        }
+    }
+}
