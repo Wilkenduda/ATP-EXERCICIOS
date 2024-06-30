@@ -1,0 +1,17 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    //Escreva um algoritmo que lê um valor n inteiro e positivo e que calcula a seguinte soma:S = 1 + 1/2 + 1/3 + 1/4 + ... + 1/n O algoritmo deve escrever cada termo gerado e o valor final de S.
+Console.Write("Digite um valor inteiro e positivo n: ");
+int n = int.Parse(Console.ReadLine());//entrada
+double S = 0.0;//inicialização da variável S como 0.0 para armazenar a soma.
+Console.WriteLine("Termos gerados:");
+  for (int i = 1; i <= n; i++) {//for para gerar cada termo da série, que é 1/i, onde i varia de 1 a n.
+   double termo = 1.0 / i;
+   S += termo;//acumulação dos termos na variável s
+   Console.WriteLine($"1/{i} = {termo}");
+  }
+   Console.WriteLine($"O valor final de S é: {S}");//saída
+    }
+}

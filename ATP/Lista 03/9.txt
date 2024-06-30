@@ -1,0 +1,23 @@
+using System;
+
+class Program {
+    public static void Main(string[] args) {
+        Console.Write("Digite um valor limite (L)");
+        int L = int.Parse(Console.ReadLine());
+
+            int primeiro = 0;
+            int segundo = 1;
+            int atual = primeiro;
+//inicialização das variáveis primeiro e segundo com os dois primeiros números da série (0 e 1), e atual com o valor de primeiro.
+            Console.WriteLine($"Elementos da série de Fibonacci menores que {L}");
+
+            while (atual < L) {//loop while para gerar e imprimir cada elemento da série que seja menor que L.
+                Console.WriteLine(atual);
+
+                int proximo = primeiro + segundo;//cálculo do próximo número da sequência somando primeiro e segundo
+                primeiro = segundo;
+                segundo = proximo;
+                atual = primeiro;//atualização dos termos para continuação do loop
+            }
+        }
+    }

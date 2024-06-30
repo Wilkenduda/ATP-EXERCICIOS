@@ -1,0 +1,23 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    //Fazer um programa leia uma sequência de valores inteiros fornecida pelo usuário em uma linha de entrada e conte o número de valores positivos, negativos e zeros.
+  int num, positivo=0, negativo=0,zero=0;//declaração de variáveis com inicialização da contagem em 0
+  char continuar = 'S';//declaração da variável char usada para que a pessoa continue do loop.
+  while (continuar == 'S'){//condicional para o loop
+    Console.WriteLine("Digite um número:");
+    num=int.Parse(Console.ReadLine());//entrada
+    if(num==0){
+      zero++;//se número for 0 aumenta-se a contagem de números zeros
+    }else if(num>0){
+      positivo++;//se número for maior que 0 aumenta-se a contagem de números positivos
+    }else if(num<0){
+      negativo++;//se número for menor que 0 aumenta-se a contagem de números negativos
+    }
+    Console.WriteLine("Quer continuar a contagem? (DIGITE 'S' PARA SIM E 'N' PARA NÃO");
+    continuar=char.Parse(Console.ReadLine());//opção de sair do loop
+  }
+    Console.WriteLine("Você digitou {0} números negativos, {1} números positivos e {2} números zero",negativo,positivo,zero);//saída com resultados da contagem
+  }
+}

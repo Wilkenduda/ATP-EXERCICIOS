@@ -1,0 +1,21 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    //Faça um programa que imprima os L primeiros elementos da série de Fibonacci. Por exemplo, se o usuário digitou o número 40, deverão ser apresentados os 40 números da sequência na tela.
+    Console.WriteLine ("Escreva a quantidade de elementos você deseja");
+    int l=int.Parse(Console.ReadLine());
+    int primeiro = 0; // inicialização com o primeiro número da sequência
+    int segundo = 1; // O segundo número da sequência
+
+    Console.WriteLine($"{l} primeiros números da sequência de Fibonacci:");
+
+    for (int i = 1; i <= l; i++) {//for para gerar e imprimir cada elemento da sequência menores que l.
+       Console.WriteLine(primeiro );
+
+        int proximo = primeiro + segundo;
+        primeiro = segundo;
+        segundo = proximo;//Calculo do próximo número da sequência somando primeiro e segundo, atualização das variáveis de segundo para primeiro e de próximo para segundo
+      }
+  }
+}

@@ -1,0 +1,50 @@
+using System;
+
+class Program
+{
+    static string CodigoDeCesar(string texto, int shift)
+    {
+        string resultado = "";
+
+        for (int i = 0; i < texto.Length; i++)
+        {
+            int codigo = (int)texto[i];
+
+            if (codigo >= 97 && codigo <= 122) // Se o caractere é uma letra minúscula
+            {
+                codigo = codigo + shift;
+                if (codigo > 122)
+                {
+                    codigo = codigo - 26;
+                }
+                resultado += (char)codigo;
+            }
+            else if (codigo >= 65 && codigo <= 90) // Se o caractere é uma letra maiúscula
+            {
+                codigo = codigo + shift;
+                if (codigo > 90)
+                {
+                    codigo = codigo - 26;
+                }
+                resultado += (char)codigo;
+            }
+            else // Se não for letra, apenas adiciona o caractere
+            {
+                resultado += (char)codigo;
+            }
+        }
+
+        return resultado;
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Digite uma frase:");
+        string frase = Console.ReadLine();
+
+        int shift = 3;
+        string fraseCodificada = CodigoDeCesar(frase, shift);
+
+        Console.WriteLine($"Frase codificada: {fraseCodificada}");
+    }
+}

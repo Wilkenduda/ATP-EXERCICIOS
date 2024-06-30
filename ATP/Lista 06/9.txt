@@ -1,0 +1,125 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+class Program
+{
+    static string caminhoArquivo = "alunos.txt"; // Caminho predefinido para o arquivo
+
+    static void Main()
+    {
+        List<Aluno> alunos = new List<Aluno>();
+
+        while (true)
+        {
+            Console.WriteLine("Escolha uma opção:");
+            Console.WriteLine("1. Inserir dados de aluno");
+            Console.WriteLine("2. Ler dados de arquivo");
+            Console.WriteLine("3. Sair");
+
+            if (int.TryParse(Console.ReadLine(), out int opcao))
+            {
+                switch (opcao)
+                {
+                    case 1:
+                        // Opção para inserir dados de aluno
+                        InserirDadosAluno(alunos);
+                        break;
+                    case 2:
+                        // Opção para ler dados de arquivo
+                        LerDadosDeArquivo(alunos);
+                        break;
+                    case 3:
+                        // Opção para sair do programa
+                        return;
+                    default:
+                        Console.WriteLine("Opção inválida. Tente novamente.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
+    static void InserirDadosAluno(List<Aluno> alunos)
+    {
+        Console.WriteLine("Digite a matrícula do aluno:");
+        string matricula = Console.ReadLine();
+
+        Console.WriteLine("Digite o telefone do aluno:");
+        string telefone = Console.ReadLine();
+
+        alunos.Add(new Aluno { Matricula = matricula, Telefone = telefone });
+
+        SalvarDadosEmArquivo(alunos); // Salva os dados no arquivo após a inserção
+        Console.WriteLine("Dados do aluno inseridos com sucesso.");
+    }
+
+    static void LerDadosDeArquivo(List<Aluno> alunos)
+    {
+        try
+        {
+            if (File.Exists(caminhoArquivo))
+            {
+                // Lê todas as linhas do arquivo
+                string[] linhas = File.ReadAllLines(caminhoArquivo);
+
+                foreach (string linha in linhas)
+                {
+                    // Divide a linha em matrícula e telefone
+                    string[] dados = linha.Split(',');
+                    if (dados.Length == 2)
+                    {
+                        string matricula = dados[0].Trim();
+                        string telefone = dados[1].Trim();
+
+                        alunos.Add(new Aluno { Matricula = matricula, Telefone = telefone });
+                    }
+                }
+
+                // Imprime os dados dos alunos na tela
+                foreach (var aluno in alunos)
+                {
+                    Console.WriteLine($"Matrícula: {aluno.Matricula}, Telefone: {aluno.Telefone}");
+                }
+
+                Console.WriteLine("Dados lidos do arquivo com sucesso.");
+            }
+            else
+            {
+                Console.WriteLine("O arquivo não existe.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+        }
+    }
+
+    static void SalvarDadosEmArquivo(List<Aluno> alunos)
+    {
+        try
+        {
+            using (StreamWriter writer = new StreamWriter(caminhoArquivo))
+            {
+                foreach (Aluno aluno in alunos)
+                {
+                    writer.WriteLine($"{aluno.Matricula},{aluno.Telefone}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao salvar os dados no arquivo: {ex.Message}");
+        }
+    }
+}
+
+class Aluno
+{
+    public string Matricula { get; set; }
+    public string Telefone { get; set; }
+}

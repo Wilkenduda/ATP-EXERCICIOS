@@ -1,0 +1,57 @@
+using System;
+using System.IO;
+using System.Globalization;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Digite a quantidade de veículos:");
+        if (int.TryParse(Console.ReadLine(), out int quantidadeVeiculos) && quantidadeVeiculos > 0)
+        {
+            Console.WriteLine("Digite o valor do aluguel por mês:");
+            if (decimal.TryParse(Console.ReadLine(), NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal valorAluguel) && valorAluguel > 0)
+            {
+                decimal faturamentoMensal = (quantidadeVeiculos * valorAluguel) / 3;
+                decimal faturamentoAnual = faturamentoMensal * 12;
+                decimal multa = (faturamentoMensal / 10) * 0.2m;
+                decimal valorManutencao = (quantidadeVeiculos * 0.02m) * 600;
+
+                Console.WriteLine($"Faturamento Mensal: {faturamentoMensal.ToString("C", CultureInfo.CurrentCulture)}");
+                Console.WriteLine($"Faturamento Anual: {faturamentoAnual.ToString("C", CultureInfo.CurrentCulture)}");
+                Console.WriteLine($"Valor Ganho com Multas no Mês: {multa.ToString("C", CultureInfo.CurrentCulture)}");
+                Console.WriteLine($"Valor Gasto com Manutenção Anual: {valorManutencao.ToString("C", CultureInfo.CurrentCulture)}");
+
+                GravarResultadosEmArquivo("resultado.txt", faturamentoMensal, faturamentoAnual, multa, valorManutencao);
+
+                Console.WriteLine("Resultados gravados no arquivo 'resultado.txt'.");
+            }
+            else
+            {
+                Console.WriteLine("Por favor, digite um valor de aluguel válido.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Por favor, digite uma quantidade de veículos válida.");
+        }
+    }
+
+    static void GravarResultadosEmArquivo(string caminhoArquivo, decimal faturamentoMensal, decimal faturamentoAnual, decimal multa, decimal valorManutencao)
+    {
+        try
+        {
+            using (StreamWriter writer = new StreamWriter(caminhoArquivo))
+            {
+                writer.WriteLine($"Faturamento Mensal: {faturamentoMensal.ToString("C", CultureInfo.CurrentCulture)}");
+                writer.WriteLine($"Faturamento Anual: {faturamentoAnual.ToString("C", CultureInfo.CurrentCulture)}");
+                writer.WriteLine($"Valor Ganho com Multas no Mês: {multa.ToString("C", CultureInfo.CurrentCulture)}");
+                writer.WriteLine($"Valor Gasto com Manutenção Anual: {valorManutencao.ToString("C", CultureInfo.CurrentCulture)}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao gravar os resultados no arquivo: {ex.Message}");
+        }
+    }
+}

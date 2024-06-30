@@ -1,0 +1,30 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    //A prefeitura de uma cidade fez uma pesquisa entre seus habitantes, coletando dados sobre o salário e número de filhos de cada habitante. A prefeitura deseja saber:a)média do salário da população; b)média do número de filhos; c)maior salário; d)percentual de pessoas com salário até R$100,00. O final da leitura de dados se dará com a entrada de um salário negativo. 
+   double salario, mediasalario=0, mediafilho=0, totalsalario=0, maiorsalario=0;
+  int filho=0, totalfilho=0, totalhabitantes=0, salarioate100=0, percsalario100=0;
+  do{
+     Console.WriteLine("Digite o valor do salário - digite um valor negativo para parar a contagem");
+     salario=double.Parse(Console.ReadLine());
+     Console.WriteLine("Quantos filhos você tem?");
+     filho=int.Parse(Console.ReadLine());
+    totalhabitantes++;
+     totalsalario+=salario;
+     totalfilho+=filho;
+     if(salario<=100)// Verifica se o salário é menor ou igual a R$100
+       salarioate100++;//conta a qtde de pessoas com salário menor que 100
+     if(salario>maiorsalario) maiorsalario=salario;// Verifica se o salário é maior do que o maior salário registrado até agora esubstitui se sim
+       }while(salario>0);// Se o salário for negativo, a pesquisa é encerrada
+    mediasalario=totalsalario/totalhabitantes;
+    mediafilho=totalfilho/totalhabitantes;// Calcula as médias de salário e número de filhos
+    percsalario100 = (salarioate100 * 100) / totalhabitantes;// Calcula o percentual de pessoas com salário até R$100
+    Console.WriteLine($"O valor total de habitantes é:  {totalhabitantes}");
+    Console.WriteLine($"A média do salário da população é: {mediasalario}");
+    Console.WriteLine($"A média do número de filhos é: {mediafilho}");
+    Console.WriteLine($"De todos, o maior salário é: {maiorsalario}");
+    Console.WriteLine($"{percsalario100}% da população recebem um salário de até R$100");//saída com os resultados
+    }
+    }
+  

@@ -1,0 +1,40 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        // Solicita ao usuário que digite o caminho do arquivo de texto
+        Console.WriteLine("Digite o caminho do arquivo de texto:");
+        string caminhoArquivo = Console.ReadLine();
+
+        // Lê e imprime o conteúdo do arquivo
+        LerEImprimirConteudo(caminhoArquivo);
+    }
+
+    static void LerEImprimirConteudo(string caminhoArquivo)
+    {
+        try
+        {
+            // Lê todas as linhas do arquivo para um array de strings
+            string[] linhas = File.ReadAllLines(caminhoArquivo);
+
+            // Imprime linha a linha e conta as linhas
+            int numeroLinhas = 0;
+            foreach (string linha in linhas)
+            {
+                Console.WriteLine(linha);
+                numeroLinhas++;
+            }
+
+            // Exibe a quantidade de linhas na tela
+            Console.WriteLine($"O arquivo possui {numeroLinhas} linhas.");
+        }
+        catch (Exception ex)
+        {
+            // Exibe mensagem de erro se ocorrer uma exceção ao ler o arquivo
+            Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+        }
+    }
+}

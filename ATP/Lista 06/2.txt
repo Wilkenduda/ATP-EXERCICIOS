@@ -1,0 +1,30 @@
+using System;
+
+class Program
+{
+
+    static string TirarVogais(string texto)
+    {
+        string semVogais = "";
+
+        for (int i = 0; i < texto.Length; i++)
+        {
+            // Verifica se o caractere atual não é uma vogal
+            if (!"aeiouAEIOU".Contains(texto[i]))
+            {
+                semVogais += texto[i]; // Se não for uma vogal, o caractere é adicionado à string semVogais
+            }
+        }
+
+        return semVogais;
+    }
+    static void Main()
+    {
+        Console.WriteLine("Digite uma frase:");
+        string frase = Console.ReadLine();
+
+        string SemVogais = TirarVogais(frase);
+
+        Console.WriteLine($"Frase sem vogais: {SemVogais}");
+    }
+}

@@ -1,0 +1,68 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Digite o caminho do arquivo:");
+        string caminhoArquivo = Console.ReadLine();
+
+        if (File.Exists(caminhoArquivo))
+        {
+            try
+            {
+                // Lê todas as linhas do arquivo
+                string[] linhas = File.ReadAllLines(caminhoArquivo);
+
+                if (linhas.Length > 0)
+                {
+                    // Inicializa variáveis para o valor máximo, mínimo e soma total
+                    double valorMaximo = double.MinValue;
+                    double valorMinimo = double.MaxValue;
+                    double somaTotal = 0;
+
+                    // Itera sobre cada linha para calcular o valor máximo, mínimo e soma total
+                    foreach (string linha in linhas)
+                    {
+                        if (double.TryParse(linha, out double numero))
+                        {
+                            // Atualiza o valor máximo
+                            valorMaximo = Math.Max(valorMaximo, numero);
+
+                            // Atualiza o valor mínimo
+                            valorMinimo = Math.Min(valorMinimo, numero);
+
+                            // Acumula a soma total
+                            somaTotal += numero;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"A linha '{linha}' não contém um número válido e será ignorada.");
+                        }
+                    }
+
+                    // Calcula a média
+                    double media = somaTotal / linhas.Length;
+
+                    // Imprime os resultados na tela
+                    Console.WriteLine($"Valor Máximo: {valorMaximo}");
+                    Console.WriteLine($"Valor Mínimo: {valorMinimo}");
+                    Console.WriteLine($"Média: {media}");
+                }
+                else
+                {
+                    Console.WriteLine("O arquivo está vazio.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("O arquivo não existe.");
+        }
+    }
+}

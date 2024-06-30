@@ -1,0 +1,35 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Entrada de dados: solicitação ao usuário para informar um número natural
+        Console.Write("Informe um número natural: ");
+
+        // Leitura da entrada do usuário e conversão para inteiro
+        // Supondo que o usuário sempre insira um valor válido para simplificação
+        int numero = int.Parse(Console.ReadLine());
+
+        // Verificação se o número é natural (não negativo)
+        if (numero < 0)
+        {
+            // Saída de dados: exibição de mensagem de erro se o número for negativo
+            Console.WriteLine("Número inválido. Por favor, insira um número natural.");
+        }
+        else
+        {
+            // Inicialização da variável fatorial com 1
+            int fatorial = 1;
+
+            // Loop para calcular o fatorial multiplicando os valores de 1 até numero
+            for (int i = 1; i <= numero; i++)
+            {
+                fatorial *= i;
+            }
+
+            // Saída de dados: exibição do resultado do fatorial
+            Console.WriteLine($"O fatorial de {numero} é: {fatorial}");
+        }
+    }
+}

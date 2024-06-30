@@ -1,0 +1,25 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    //Faça um programa que receba dez números e verifique se eles são divisíveis por 3 e 9 (ao mesmo tempo), por 2 e por 5. Caso algum número não seja divisível por nenhum desses números mostre a mensagem “Número não é divisível pelos valores”. Apresente também ao final a quantidade de números divisíveis por 3 e 9, por 2 e por 5.
+int divisivelpor2e5 = 0, cont, divisivelpor3e9 = 0;//declaração de variáveis
+
+for (cont = 0; cont < 10; cont++)//cont=contagem da quantidade de números digitados, uso de for vara demarcar que são 10 repetições.
+{
+Console.Write($"Digite o {cont + 1}º número: ");//cont+1 representa qual o número sequencial que a pessoa irá digitar
+int numero = int.Parse(Console.ReadLine());//entrada
+
+if (numero % 3 == 0 && numero % 9 == 0)//se o resto dadivisão do número digitado por três ou nove for zero, significa que o número é divisivel por esses
+{
+divisivelpor3e9++;//aumenta a contagem
+}
+
+if (numero % 2 == 0 && numero % 5 == 0)//se o resto dadivisão do número digitado por dois ou cinco for zero, significa que o número é divisivel por esses
+{
+divisivelpor2e5++;//aumenta a contagem
+}
+}
+Console.WriteLine("De {0} números digitados, {1} eram divisíveis por 3 e 9 e {2} eram divisíveis por 2 e 5", cont, divisivelpor3e9, divisivelpor2e5);//saída, indica quantos números com cada requisito foram digitados a partir da contagem deles
+    }
+  }

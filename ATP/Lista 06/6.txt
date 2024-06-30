@@ -1,0 +1,68 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        // Solicita ao usuário que digite um número
+        Console.WriteLine("Digite um número inteiro positivo:");
+
+        // Verifica se a entrada do usuário é um número válido
+        if (int.TryParse(Console.ReadLine(), out int numero) && numero > 0)
+        {
+            // Obtém e imprime os divisores do número
+            int[] divisores = ObterDivisores(numero);
+            Console.WriteLine($"Divisores de {numero}: {string.Join(", ", divisores)}");
+
+            // Calcula e salva a soma dos divisores em um arquivo texto
+            SalvarSomaDivisoresEmArquivo(numero, divisores);
+        }
+        else
+        {
+            Console.WriteLine("Por favor, digite um número inteiro positivo válido.");
+        }
+    }
+
+    static int[] ObterDivisores(int numero)
+    {
+        // Inicializa uma lista para armazenar os divisores
+        var divisores = new System.Collections.Generic.List<int>();
+
+        // Percorre os números de 1 até o número fornecido
+        for (int i = 1; i <= numero; i++)
+        {
+            // Se i é um divisor de numero, adiciona à lista
+            if (numero % i == 0)
+            {
+                divisores.Add(i);
+            }
+        }
+
+        // Retorna a lista de divisores como um array
+        return divisores.ToArray();
+    }
+
+    static void SalvarSomaDivisoresEmArquivo(int numero, int[] divisores)
+    {
+        try
+        {
+            // Calcula a soma dos divisores
+            int somaDivisores = 0;
+            foreach (var divisor in divisores)
+            {
+                somaDivisores += divisor;
+            }
+
+            // Cria um arquivo texto para salvar a soma dos divisores
+            string caminhoArquivo = "soma_divisores.txt";
+            File.WriteAllText(caminhoArquivo, $"Número: {numero}\nSoma dos Divisores: {somaDivisores}");
+
+            Console.WriteLine($"A soma dos divisores foi salva no arquivo: {caminhoArquivo}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao salvar a soma dos divisores no arquivo: {ex.Message}");
+        }
+    }
+}

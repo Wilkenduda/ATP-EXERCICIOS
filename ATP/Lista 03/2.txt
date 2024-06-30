@@ -1,0 +1,28 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    //Adaptar o programa acima para que ele calcule o percentual dos valores positivos, negativos e zeros em relação ao total de valores fornecidos.
+  int num, positivo=0, negativo=0,zero=0; //declaração das variáveis com inicialização da contagem em 0
+  double contagem=0, percpositivos, percnegativos, perczeros;
+  char continuar = 'S';//declaração da variável em char para que a pessoa possa sair ou continuar no loop
+  while (continuar == 'S'){//condicional do loop para que enquanto a pessoa escolha continuar ela possa
+    Console.WriteLine("Digite um número:");
+    num=int.Parse(Console.ReadLine());//entrada
+    if(num==0){
+      zero++;//se o número digitado for 0 aumenta-se a contagem de números zeros
+    }else if(num>0){
+      positivo++;//se o número digitado for maior que 0 aumenta-se a contagem de números positivos
+    }else if(num<0){
+      negativo++;//se o número digitado for MENOR QUE 0 aumenta-se a contagem de números negativos
+    }
+    contagem++;//a contagem de todos os números aumentam em qualquer uma das ocasiões acima em cada loop
+    Console.WriteLine("Quer continuar a contagem? (DIGITE 'S' PARA SIM E 'N' PARA NÃO");
+    continuar=char.Parse(Console.ReadLine());//opção de continuar ou sair
+  }
+    percpositivos=(positivo/contagem)*100;
+    percnegativos=(negativo/contagem)*100;
+    perczeros=(zero/contagem)*100;//para contar o percentual dividi a qtde de cada condição pela contagem geral e multipliquei por 100
+    Console.WriteLine("{0}% dos números que você digitou foram zeros, {1}% foram positivos e {2}% eram negativos", perczeros,percpositivos, percnegativos);//saída
+  }
+}

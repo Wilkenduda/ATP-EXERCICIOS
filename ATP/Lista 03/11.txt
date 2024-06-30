@@ -1,0 +1,49 @@
+using System;
+
+class Program {
+    public static void Main(string[] args) {
+        int candidato1=0, candidato2=0, candidato3=0, candidato4=0, nulos=0, branco=0;//variáveis
+  
+        Console.WriteLine("Digite os votos (1, 2, 3, 4, 5 ou 6) - Digite 0 para encerrar:");
+
+        while (true) {// permite que o usuário insira votos repetidamente até que ele digite 0 para encerrar a entrada de votos.
+            int voto = int.Parse(Console.ReadLine());
+            if (voto == 0) {
+                break; // Encerra
+            } else if (voto >= 1 && voto <= 4) {
+                // Voto para candidato
+                switch (voto) {
+                    case 1:
+                        candidato1++;
+                        break;
+                    case 2:
+                        candidato2++;
+                        break;
+                    case 3:
+                        candidato3++;
+                        break;
+                    case 4:
+                        candidato4++;
+                        break;
+                }
+            } else if (voto == 5) {
+                // Voto nulo
+                nulos++;
+            } else if (voto == 6) {
+                // Voto em branco
+                branco++;
+            } else {
+                Console.WriteLine("Código de voto inválido.");
+            }
+        }
+
+        Console.WriteLine("Resultado da eleição:");//saída
+
+        Console.WriteLine($"Candidato 1: {candidato1} votos");
+        Console.WriteLine($"Candidato 2: {candidato2} votos");
+        Console.WriteLine($"Candidato 3: {candidato3} votos");
+        Console.WriteLine($"Candidato 4: {candidato4} votos");
+        Console.WriteLine($"Votos nulos: {nulos}");
+        Console.WriteLine($"Votos em branco: {branco}");
+    }
+}

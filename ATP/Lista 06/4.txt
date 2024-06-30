@@ -1,0 +1,66 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        // Solicita ao usuário que digite o caminho do arquivo de texto a ser criado
+        Console.WriteLine("Digite o caminho do arquivo de texto a ser criado:");
+        string caminhoArquivo = Console.ReadLine();
+
+        // Cria o arquivo e escreve um exemplo de texto nele
+        CriarArquivo(caminhoArquivo);
+
+        // Chama a função para contar a quantidade de caracteres 'a' no arquivo
+        int quantidadeCaracteresA = ContarCaracteresA(caminhoArquivo);
+
+        // Exibe a quantidade de caracteres 'a' na tela
+        Console.WriteLine($"Quantidade de caracteres 'a' no arquivo: {quantidadeCaracteresA}");
+    }
+
+    static void CriarArquivo(string caminhoArquivo)
+    {
+        try
+        {
+            // Escreve um exemplo de texto no arquivo
+            File.WriteAllText(caminhoArquivo, "Exemplo de texto para contar caracteres 'a'.");
+        }
+        catch (Exception ex)
+        {
+            // Exibe mensagem de erro se ocorrer uma exceção ao criar o arquivo
+            Console.WriteLine($"Erro ao criar o arquivo: {ex.Message}");
+        }
+    }
+
+    static int ContarCaracteresA(string caminhoArquivo)
+    {
+        int contador = 0;
+
+        try
+        {
+            // Lê todo o conteúdo do arquivo para uma string
+            string conteudo = File.ReadAllText(caminhoArquivo);
+
+            // Percorre cada caractere e conta os caracteres 'a'
+            foreach (char caractere in conteudo)
+            {
+                // Verifica se o caractere (convertido para minúsculas) é 'a'
+                if (char.ToLower(caractere) == 'a')
+                {
+                    contador++;
+                }
+            }
+
+            return contador;
+        }
+        catch (Exception ex)
+        {
+            // Exibe mensagem de erro se ocorrer uma exceção ao ler o arquivo
+            Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+
+            // Retorna -1 para indicar que ocorreu um erro
+            return -1;
+        }
+    }
+}

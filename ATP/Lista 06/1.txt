@@ -1,0 +1,27 @@
+using System;
+
+class Program {
+  static int Contar(string texto)
+  {
+      int contador = 0;
+
+    for (int i = 0; i < texto.Length; i++)// percorre cada caractere na string e verifica se é um espaço em branco
+    {
+        if (char.IsWhiteSpace(texto[i]))//é usado para verificar se o caractere atual é um espaço em branco.
+        {
+            contador++;
+        }
+    }
+
+      return contador;
+  }
+  static void Main()
+  {
+      Console.WriteLine("Digite uma frase:");
+      string frase = Console.ReadLine();//entrada de dads
+
+      int contador = Contar(frase);
+
+      Console.WriteLine($"{contador} espaços em branco nessa frase");
+  }
+}
